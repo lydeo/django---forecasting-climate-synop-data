@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block header %}
+  <h1 class="display-4" style="font-weight:bolder;">Views</h1>
+  <p class="lead" style="font-weight:bolder;">"WeForecast"</p>
+{% endblock header %}
+{% block upperbody %}
+{% endblock upperbody %}
+
+{% block body %}
+<h3>Table Data Klimatology</h3>
+
+<br>         
+<table border="1" cellpadding="5">
+        <tr align="center">
+            <th rowspan="2">No</th>
+            <th colspan="3">Temperatur</th>
+            <th rowspan="2">Curah Hujan</th>
+            <th rowspan="2">Penyinaran Matahari</th>
+            <th rowspan="2">Tekanan Udara</th>
+            <th rowspan="2">Kelembaban</th>
+            <th rowspan="2">Kecepatan Rata Angin</th>
+        </tr>
+        <tr align="center">
+            <th>Temperatur Rata-Rata</th>
+            <th>Temperatur Max</th>
+            <th>Temperatur Min</th>
+    
+        </tr>
+        {% for post in Posts %}
+        <tr align="center">
+            <td>{{post.id}}</td>
+            <td>{{post.temp_rata2}}</td>
+            <td>{{post.temp_max}}</td>
+            <td>{{post.temp_min}}</td>
+            <td>{{post.curah_hujan}}</td>
+            <td>{{post.penyinaran_matahari}}</td>
+            <td>{{post.tekanan_udara}}</td>
+            <td>{{post.kelembaban}}</td>
+            <td>{{post.kec_rata_angin}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock body %}

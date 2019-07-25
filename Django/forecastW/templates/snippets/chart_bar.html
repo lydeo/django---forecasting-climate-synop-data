@@ -1,0 +1,29 @@
+<div style="width: 500px;height: 250px">
+        <canvas id="myChart"></canvas>
+</div>
+<script>
+        var value = [{{Hasil}}];
+        var tahun = {{Tahun}};
+        var bulan = ['{{Bulan}}'];
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                        labels: bulan,
+                        datasets: [{
+                                label: 'Grafik Hasil Prediksi Pada Bulan '+bulan+' Tahun '+tahun,
+                                data: value,
+                                backgroundColor: "rgba(253, 192, 99, 0.815)",
+                                pointBackgroundColor: "rgba(0, 174, 255, 0.815)",
+                                borderColor: "rgba(3, 3, 3, 0.815)",
+                                borderWidth : 2
+                        }]
+                },
+                options: {
+                        elements: {
+                                point: {
+                                }
+                        }                     
+                }
+        });
+</script>

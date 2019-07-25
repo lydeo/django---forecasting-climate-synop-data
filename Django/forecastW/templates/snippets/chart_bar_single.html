@@ -1,0 +1,46 @@
+<div style="width: 500px;height: 100">
+        <canvas id="myChart"></canvas>
+</div>
+<script>
+        var value = [{{Hasil}}];
+        var tahun = {{Tahun}};
+        var bulan = ['{{Bulan}}'];
+        var comp_Value = [{{Comp_y}}];
+        var comp_tahun = {{List_comp_thn}};
+        var predValue ={
+            label: 'Hasil Prediksi Pada Bulan '+bulan +' Tahun '+tahun,
+            data : value,
+            backgroundColor: "rgba(253, 192, 99, 0.815)",
+            borderColor: "rgba(3, 3, 3, 0.815)",
+            borderWidth: 2,
+        }
+        var compValue ={
+            label : 'Data Histori Pada Bulan '+bulan +' Tahun '+comp_tahun,
+            data : comp_Value,
+            backgroundColor: "rgba(0, 174, 255, 0.815)",
+            borderColor: "rgba(3, 3, 3, 0.815)",
+            borderWidth: 2,
+        }
+        var all = {
+            labels: bulan,
+            datasets:[predValue, compValue]
+        }
+        var chartOption ={
+            scales: {
+                xAxes: [{
+                }],
+                yAxes: [{
+                    ticks:{
+                                stepSize: 0.95,
+                    }
+                }]
+                }
+            };
+        var ctx = document.getElementById("myChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: all,
+            options: chartOption,
+        });
+
+</script>

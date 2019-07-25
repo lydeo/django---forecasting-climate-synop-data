@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+  <h1 class="display-4" style="font-weight:bolder;">Views</h1>
+  <p class="lead" style="font-weight:bolder;">"WeForecast"</p>
+{% endblock header %}
+{% block upperbody %}}
+<form class="select-data" method='post'>
+    <ul>
+        <li><a href="/prediksi/temp_rata" title="">Temperatur Rata-rata</a></li>
+        <li><a href="/prediksi/temp_max" title="">Temperatur Maksimal</a></li>
+        <li><a href="/prediksi/temp_min" title="">Temperatur Manimal</a></li>
+        <li><a href="/prediksi/curah_hujan" title="">Curah Hujan</a></li>
+        <li><a href="/prediksi/penyinaran_matahari" title="">Penyinaran Matahari</a></li>
+        <li><a href="/prediksi/tekanan_udara" title="">Tekanan Udara</a></li>
+        <li><a href="/prediksi/kelembaban" title="">Kelembaban</a></li>
+        <li><a href="/prediksi/kec_angin" title="">Kecepatan Rata-rata Angin</a></li>
+    </ul>
+    {% csrf_token %}
+    Jenis Data:
+    <select name="jenis_data">
+        <option value="temp_rata2">Temperatur Rata-Rata</option>
+        <option value="temp_min">Temperatur Min</option>
+        <option value="temp_max">Temperatur Max</option>
+        <option value="curah_hujan">Curah Hujan</option>
+        <option value="penyinaran_matahari">Penyinaran Matahari</option>
+        <option value="tekanan_udara">Tekanan Udara</option>
+        <option value="kelembaban">Kelembaban</option>
+        <option value="kec_rata_angin">Kecepatan Rata-rata Angin</option>
+    </select>
+    <button type="submit" class="link-button">PREDICT!!!</button>  
+    <br>
+    <br>
+</form>
+{% endblock upperbody %}
+
+{% block body %}
+<h3>Hasil Prediksi Data Klimatology</h3>
+
+<br>         
+<table border="1" cellpadding="5">
+    {% if case == "temp_rata2" %}
+    <tr align="center">
+        <th>ID</th>
+        <th>Temperatur Rata-rata</th>
+    </tr>
+    {% for post in Posts %}
+    <tr align="center">
+        <td>{{post.id}}</td>
+        <td>{{post.temp_rata2}}</td>
+    </tr>
+    {% endfor %}
+    {% elif case == "temp_min" %}
+        <tr align="center">
+            <th>ID</th>
+            <th>Temperatur Min</th>
+        </tr>
+        {% for post in Posts %}
+        <tr align="center">
+            <td>{{post.id}}</td>
+            <td>{{post.temp_min}}</td>
+        </tr>
+    {% endfor %}
+    {% elif case == "temp_max" %}
+    <tr align="center">
+        <th>ID</th>
+        <th>Temperatur Max</th>
+    </tr>
+    {% for post in Posts %}
+    <tr align="center">
+        <td>{{post.id}}</td>
+        <td>{{post.temp_max}}</td>
+    </tr>
+    {% endfor %}
+    {% elif case == "curah_hujan" %}
+    <tr align="center">
+        <th>ID</th>
+        <th>Curah Hujan</th>
+    </tr>
+    {% for post in Posts %}
+    <tr align="center">
+        <td>{{post.id}}</td>
+        <td>{{post.curah_hujan}}</td>
+    </tr>
+    {% endfor %}
+    {% elif case == "penyinaran_matahari" %}
+    <tr align="center">
+        <th>ID</th>
+        <th>Penyinaran Matahari</th>
+    </tr>
+    {% for post in Posts %}
+    <tr align="center">
+        <td>{{post.id}}</td>
+        <td>{{post.penyinaran_matahari}}</td>
+    </tr>
+    {% endfor %}
+    {% elif case == "tekanan_udara" %}
+    <tr align="center">
+        <th>ID</th>
+        <th>Tekanan Udara</th>
+    </tr>
+    {% for post in Posts %}
+    <tr align="center">
+        <td>{{post.id}}</td>
+        <td>{{post.tekanan_udara}}</td>
+    </tr>
+    {% endfor %}
+    {% elif case == "kelembaban" %}
+    <tr align="center">
+        <th>ID</th>
+        <th>Kelembaban</th>
+    </tr>
+    {% for post in Posts %}
+    <tr align="center">
+        <td>{{post.id}}</td>
+        <td>{{post.kelembaban}}</td>
+    </tr>
+    {% endfor %}
+    {% elif case == "kec_rata_angin" %}
+        <tr align="center">
+            <th>ID</th>
+            <th>Kecepatan Rata-rata Angin</th>
+        </tr>
+        {% for post in Posts %}
+        <tr align="center">
+            <td>{{post.id}}</td>
+            <td>{{post.kec_rata_angin}}</td>
+        </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock body %}

@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html >
+<html>
+    <head>
+        <title>WeForecast</title>
+        {% include "snippets/styles.html" %}
+        <script type="text/javascript" src="{% static "js/Chart.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}">
+        </head> 
+    <body>
+        {% include "snippets/navbar.html" %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                    {% block header %}
+                    {% endblock header %}
+             </div>
+        </div>
+        {% block upperbody %}
+        {% endblock upperbody %}
+        <div class="container-fluid">
+        <div class="container bg-white shadow">
+                <div class="row" style="margin:5px;">
+                    {% block body %}
+                    {% endblock body %}
+                </div>
+              </div>
+              </div>
+            {% include "snippets/script.html" %}
+    </body>
+</html>

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+  <h1 class="display-4" style="font-weight:bolder;">Views</h1>
+  <p class="lead" style="font-weight:bolder;">"WeForecast"</p>
+{% endblock header %}
+{% block upperbody %}
+
+{% endblock upperbody %}
+
+{% block body %}
+<form method="POST" style="width: 100%">
+        {% csrf_token %}
+        Bulan:
+        <select name="input_bulan">
+                <option {% if Bu == "Semua Bulan" %} selected {% endif %} >Semua Bulan</option>
+                <option {% if Bu == "Januari" %} selected {% endif %}>Januari</option>
+                <option {% if Bu == "Februari" %} selected {% endif %}>Februari</option>
+                <option {% if Bu == "Maret" %} selected {% endif %} >Maret</option>
+                <option {% if Bu == "April" %} selected {% endif %}>April</option>
+                <option {% if Bu == "Mei" %} selected {% endif %}>Mei</option>
+                <option {% if Bu == "Juni" %} selected {% endif %}>Juni</option>
+                <option {% if Bu == "Juli" %} selected {% endif %}>Juli</option>
+                <option {% if Bu == "Agustus" %} selected {% endif %}>Agustus</option>
+                <option {% if Bu == "September" %} selected {% endif %}>September</option>
+                <option {% if Bu == "Oktober" %} selected {% endif %}>Oktober</option>
+                <option {% if Bu == "November" %} selected {% endif %}>November</option>
+                <option {% if Bu == "Desember" %} selected {% endif %}>Desember</option>
+        </select>
+        Tahun:
+        <select name="input_tahun">
+                <option {% if Tahun == "2019" %} selected {% endif %}>2019</option>
+                <option {% if Tahun == "2020" %} selected {% endif %}>2020</option>
+                <option {% if Tahun == "2021" %} selected {% endif %}>2021</option>
+                <option {% if Tahun == "2022" %} selected {% endif %}>2022</option>
+                <option {% if Tahun == "2023" %} selected {% endif %}>2023</option>
+                </select>
+        <button type="submit" class="link-button">PREDICT!!!</button>
+        <br>
+        <h3>Hasil Prediksi Penyinaran Matahari:</h3>
+
+
+
+<br>         
+{% if Bu != "Semua Bulan" %}         
+<table border="1" cellpadding="5">
+        <tr align="center">
+            <th>Tahun</th>
+            <th>Bulan</th>
+            <th>Hasil Prediksi</th>
+            <th>Grafik</th>
+        </tr>
+        
+        <tr align="center">
+        <td valign="top">{{Tahun}}</td>
+        <td valign="top">{{Bulan}}</td>
+        <td valign="top">{{Hasil}}</td>
+        {% if List_comp_thn == "====" %}
+        <td>{% include "snippets/chart_bar.html" %}</td>
+                {% else %}
+                <td>{% include "snippets/chart_bar_single.html" %}</td>
+                {% endif %}
+        </tr>
+</table>
+        {% else %}
+        <table border="1" cellpadding="5">
+        <tr align="center">
+                <th>Tahun</th>
+                <th>Bulan</th>
+                <th>Hasil Prediksi</th>
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.0}}</td>
+                <td>{{List_y.0}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.1}}</td>
+                <td>{{List_y.1}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.2}}</td>
+                <td>{{List_y.2}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.3}}</td>
+                <td>{{List_y.3}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.4}}</td>
+                <td>{{List_y.4}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.5}}</td>
+                <td>{{List_y.5}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.6}}</td>
+                <td>{{List_y.6}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.7}}</td>
+                <td>{{List_y.7}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.8}}</td>
+                <td>{{List_y.8}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.9}}</td>
+                <td>{{List_y.9}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.10}}</td>
+                <td>{{List_y.10}}</td>          
+        </tr>
+        <tr align="center">
+                <td>{{Tahun}}</td>
+                <td>{{List_bln.11}}</td>
+                <td>{{List_y.11}}</td>          
+        </tr>
+    </table>
+    {% endif %}
+    <h3>Bandingkan Dengan Data Histori</h3>
+    <br>
+    Tahun:
+    <select name="compTahun">
+            <option {% if List_comp_thn == "====" %} selected {% endif %}>====</option>
+            <option {% if List_comp_thn == "2014" %} selected {% endif %}>2014</option>
+            <option {% if List_comp_thn == "2015" %} selected {% endif %}>2015</option>
+            <option {% if List_comp_thn == "2016" %} selected {% endif %}>2016</option>
+            <option {% if List_comp_thn == "2017" %} selected {% endif %}>2017</option>
+            <option {% if List_comp_thn == "2018" %} selected {% endif %}>2018</option>
+     </select>
+    <button type="submit" class="link-button">COMPARE!!!</button>
+</form>
+{% if List_comp_thn == "====" %}
+        {% include "snippets/chart_single.html" %}
+{% else %}
+        {% include "snippets/chart.html" %}
+{% endif %}
+     
+{% endblock body %}

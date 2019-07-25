@@ -1,0 +1,39 @@
+<div style="width: 100%;height: 100%">
+		<canvas id="myChart"></canvas>
+	</div>
+        <script>
+				var value = {{List_y}};
+				var comp_value = {{List_comp_y}}
+				var tahun = {{Tahun}};
+				var comp_tahun = {{List_comp_thn}}
+				var defaultLabel = ['JANUARI','FEBRUARI','MARET','APRIL','MEI','JUNI','JULI','AGUSTUS','SEPTEMBER','OKTOBER','NOVEMBER','DESEMBER']
+				var predValue ={
+					label: 'Hasil Prediksi Pada Tahun '+tahun,
+					data : value,
+					pointBackgroundColor: "rgba(0, 174, 255, 0.815)",
+					borderColor: "rgba(0, 174, 255, 0.815)",
+					pointBorderWidth : 2
+				}
+				var compValue ={
+					label : 'Data Histori Pada Tahun '+comp_tahun,
+					data : comp_value,
+					pointBackgroundColor: "rgba(3, 3, 3, 0.815)",
+					borderColor: "rgba(3, 3, 3, 0.815)",
+					pointBorderWidth : 2
+				}
+				var all = {
+					labels: defaultLabel,
+					datasets:[predValue, compValue]
+				}
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'line',
+			data: all,
+			options: {
+				elements: {
+					point: {
+					}
+				}                     
+			}
+		});
+	</script>
